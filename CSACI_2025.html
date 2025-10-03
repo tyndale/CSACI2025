@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSACI 2025 Meeting Navigator</title>
+    <style>
+        /* General Styling */
+        :root {
+            --primary-color: #005a9c;
+            --highlight-color: #e6f7ff;
+            --highlight-border: #007bff;
+            --text-color: #333;
+            --light-gray: #f4f4f4;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            padding-bottom: 80px; /* Space for the sticky footer */
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        nav a {
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--light-gray);
+        }
+
+        /* Main Content Area */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .day-section {
+            margin-bottom: 3rem;
+        }
+
+        .day-section h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Session Card Styling */
+        .session-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+            border-left: 5px solid #ccc;
+        }
+
+        .session-card h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+
+        .session-card p {
+            margin: 0.5rem 0;
+            color: #555;
+        }
+        
+        .session-card .time {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        /* Priority Session Highlight */
+        .session-card.priority {
+            background-color: var(--highlight-color);
+            border-left: 5px solid var(--highlight-border);
+        }
+
+        .session-card.priority h3::before {
+            content: '⭐ ';
+        }
+
+        /* Attendance Tracker */
+        .attendance-tracker {
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .attendance-tracker input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .attendance-tracker label {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* CME Credits Tracker Footer */
+        .cme-tracker {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 1.25rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        #total-hours {
+            background-color: var(--white);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 1.6rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.4rem;
+            }
+            nav {
+                flex-direction: column;
+                text-align: center;
+            }
+            .cme-tracker {
+                font-size: 1.1rem;
+            }
+             #total-hours {
+                font-size: 1.2rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CSACI Annual Scientific Meeting: October 15-18, 2025</h1>
+    </header>
+
+    <nav>
+        <a href="#thursday">Thursday, Oct. 16</a>
+        <a href="#friday">Friday, Oct. 17</a>
+        <a href="#saturday">Saturday, Oct. 18</a>
+    </nav>
+
+    <div class="container">
+        <!-- Thursday Schedule -->
+        <section id="thursday" class="day-section">
+            <h2>🗓️ Thursday, October 16</h2>
+            <div class="session-card">
+                <p class="time">09:00h - 10:15h</p>
+                <h3>PLENARY SESSION I - Access to Care</h3>
+                <p class="location">📍 Location: Vancouver Convention Centre (VCC) East</p>
+                <p class="credits">⭐ CME Credits: 1.25 HRS</p>
+                <div class="attendance-tracker">
+                    <input type="checkbox" id="session-thu-1" data-hours="1.25">
+                    <label for="session-thu-1">Attended</label>
+                </div>
+            </div>
+            <div class="session-card">
+                <p class="time">10:30h - 12:00h</p>
+                <h3>PLENARY SESSION II - Anaphylaxis</h3>
+                <p class="location">📍 Location: Vancouver Convention Centre (VCC) East</p>
+                <p class="credits">⭐ CME Credits: 1.5 HRS</p>
+                <div class="attendance-tracker">
+                    <input type="checkbox" id="session-thu-2" data-hours="1.5">
+                    <label for="session-thu-2">Attended</label>
+                </div>
+            </div>
+            <div class="session-card">
+                <p class="time">13:00h - 16:00h</p>
+                <h3>AIRWAY SYMPOSIUM</h3>
+                <p class="location">📍 Location: Vancouver Convention Centre (VCC) East</p>
+                <p class="credits">⭐ CME Credits: 3.0 HRS</p>
+                <div class="attendance-tracker">
+                    <input type="checkbox" id="session-thu-3" data-hours="3.0">
+                    <label for="session-thu-3">Attended</label>
+                </div>
+            </div>
+            <div class="session-card">
+                <p class="time">16:15h - 17:15h</p>
+                <h3>KEYNOTE ADDRESS: Zachary Rubin</h3>
+                <p class="location">📍 Location: Vancouver Convention Centre (VCC) East</p>
+                <p class="credits">⭐ CME Credits: 1.0 HRS</p>
+                <div class="attendance-tracker">
+                    <input type="checkbox" id="session-thu-4" data-hours="1.0">
+                    <label for="session-thu-4">Attended</label>
+                </div>
+            </div>
+             <div class="session-card">
+                <p class="time">17:15h - 18:00h</p>
+                <h3>INTEREST SECTION MEETINGS</h3>
+                <p class="location">📍 Location: Vancouver Convention Centre (VCC) East</p>
+                <p class="credits">⭐ CME Credits: 0.75 HRS</p>
+                <div class="attendance-tracker">
+                    <input type="checkbox" id="session-thu-5" data-hours="0.75">
+                    <label for="session-thu-5">Attended</label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Friday Schedule -->
+        <section id="friday" class="day-section">
+            <h2>🗓️ Friday, October 17</h2>
+            <div class="session-card">
+                <p class="time">08:15h - 09:45h</p>
+                <h3>PLENARY SESSION III - Secondary Immunodeficiency</h3>
+                <p class="location">📍 Location: Vancouver Convention Centre (VCC) East</p>
+                <p class="credits">⭐ CME Credits: 1.5 HRS</p>
+                <div class="attendance-tracker">
+                    <input type="checkbox" id="session-fri-1" data-hours="1.5">
+                    <label for="session-fri-1">Attended</label>
+                </div>
+            </div>
+            <div class="session-card">
+                <p class="time">10:00h - 11:15h</p>
+                <h3>CONCURRENT SESSIONS I</h3>
+                <p class="location">📍 Location: Vancouver Convention Centre (VCC) East</p>
+                <p class="credits">⭐ CME Credits: 1.25 HRS</p>
+                <div class="attendance-tracker">
+                    <input type="checkbox" id="session-fri-2" data-hours="1.25">
+                    <label for="session-fri-2">Attended</label>
+                </div>
+            </div>
+            <div class="session-card">
+                <p class="time">11:30h - 12:30h</p>
+                <h3>PLENARY SESSION IV - Hot Topics in Allergy</h3>
+                <p class="location">📍 Location: Vancouver Convention Centre (VCC) East</p>
+                <p class="credits">⭐ CME Credits: 1.0 HRS</p>
+                <div class="attendance-tracker">
+                    <input type="checkbox" id="session-fri-3" data-hours="1.0">
+                    <label for="session-fri-3">Attended</label>
+                </div>
+            </div>
+            <div class="session-card priority">
+                <p class="time">14:00h - 15:45h</p>
+                <h3>PRIORITY: SECTION 3 WORKSHOPS</h3>
+                <p class="location">📍 Location: Vancouver Convention Centre (VCC) East</p>
+                <p class="credits">⭐ CME Credits: 1.50 HRS</p>
+                <p><strong>Description:</strong> This is the most important session. In-depth, interactive workshops focusing on key practical skills and emerging topics in allergy and immunology.</p>
+                <div class="attendance-tracker">
+                    <input type="checkbox" id="session-fri-4" data-hours="1.50">
+                    <label for="session-fri-4">Attended</label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Saturday Schedule -->
+        <section id="saturday" class="day-section">
+            <h2>🗓️ Saturday, October 18</h2>
+            <div class="session-card">
+                <p class="time">08:30h - 10:00h</p>
+                <h3>PLENARY SESSION V - Neuroimmunology</h3>
+                <p class="location">📍 Location: Vancouver Convention Centre (VCC) East</p>
+                <p class="credits">⭐ CME Credits: 1.5 HRS</p>
+                <div class="attendance-tracker">
+                    <input type="checkbox" id="session-sat-1" data-hours="1.5">
+                    <label for="session-sat-1">Attended</label>
+                </div>
+            </div>
+            <div class="session-card">
+                <p class="time">10:15h - 11:30h</p>
+                <h3>PLENARY SESSION VI - HAE</h3>
+                <p class="location">📍 Location: Vancouver Convention Centre (VCC) East</p>
+                <p class="credits">⭐ CME Credits: 1.25 HRS</p>
+                <div class="attendance-tracker">
+                    <input type="checkbox" id="session-sat-2" data-hours="1.25">
+                    <label for="session-sat-2">Attended</label>
+                </div>
+            </div>
+            <div class="session-card">
+                <p class="time">13:15h - 14:30h</p>
+                <h3>CONCURRENT SESSIONS 2</h3>
+                <p class="location">📍 Location: Vancouver Convention Centre (VCC) East</p>
+                <p class="credits">⭐ CME Credits: 1.25 HRS</p>
+                <div class="attendance-tracker">
+                    <input type="checkbox" id="session-sat-3" data-hours="1.25">
+                    <label for="session-sat-3">Attended</label>
+                </div>
+            </div>
+             <div class="session-card">
+                <p class="time">14:45h - 16:00h</p>
+                <h3>CONCURRENT ORAL ABSTRACT SESSIONS</h3>
+                <p class="location">📍 Location: Vancouver Convention Centre (VCC) East</p>
+                <p class="credits">⭐ CME Credits: 1.25 HRS</p>
+                <div class="attendance-tracker">
+                    <input type="checkbox" id="session-sat-4" data-hours="1.25">
+                    <label for="session-sat-4">Attended</label>
+                </div>
+            </div>
+            <div class="session-card">
+                <p class="time">16:15h - 17:15h</p>
+                <h3>PLENARY V - RAFT DEBATE</h3>
+                <p class="location">📍 Location: Vancouver Convention Centre (VCC) East</p>
+                <p class="credits">⭐ CME Credits: 1.0 HRS</p>
+                <div class="attendance-tracker">
+                    <input type="checkbox" id="session-sat-5" data-hours="1.0">
+                    <label for="session-sat-5">Attended</label>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="cme-tracker">
+        Your Grand Total Hours to Claim: <span id="total-hours">0.00</span> HRS
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const totalHoursEl = document.getElementById('total-hours');
+            const storageKey = 'attendedCsaciSessions';
+
+            // --- FUNCTIONS ---
+
+            // 1. Calculate total hours from checked boxes and update display
+            const calculateTotal = () => {
+                let total = 0;
+                checkboxes.forEach(box => {
+                    if (box.checked) {
+                        total += parseFloat(box.dataset.hours);
+                    }
+                });
+                totalHoursEl.textContent = total.toFixed(2);
+            };
+
+            // 2. Save the state of all checkboxes to localStorage
+            const saveState = () => {
+                const attendedSessions = [];
+                checkboxes.forEach(box => {
+                    if (box.checked) {
+                        attendedSessions.push(box.id);
+                    }
+                });
+                localStorage.setItem(storageKey, JSON.stringify(attendedSessions));
+            };
+
+            // 3. Load the state from localStorage
+            const loadState = () => {
+                const attendedSessions = JSON.parse(localStorage.getItem(storageKey));
+                if (attendedSessions) {
+                    attendedSessions.forEach(sessionId => {
+                        const box = document.getElementById(sessionId);
+                        if (box) {
+                            box.checked = true;
+                        }
+                    });
+                }
+                // Update total on initial load
+                calculateTotal();
+            };
+            
+            // --- EVENT LISTENERS ---
+
+            // Add an event listener to each checkbox
+            checkboxes.forEach(box => {
+                box.addEventListener('change', () => {
+                    calculateTotal();
+                    saveState();
+                });
+            });
+
+            // --- INITIAL LOAD ---
+            
+            // Load the saved state when the page is ready
+            loadState();
+        });
+    </script>
+
+</body>
+</html>
